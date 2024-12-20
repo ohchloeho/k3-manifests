@@ -28,8 +28,8 @@ spec:
         - name: DB_PASS
           valueFrom:
             secretKeyRef:
-              name: bookstack-db-secret
-              key: password
+              name: mariadb-secret
+              key: user-password
         - name: DB_DATABASE
           value: "bookstack"
         volumeMounts:

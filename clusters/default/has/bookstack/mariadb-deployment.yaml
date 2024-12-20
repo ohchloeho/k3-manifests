@@ -23,7 +23,7 @@ spec:
                   name: mariadb-secret
                   key: root-password
             - name: MYSQL_DATABASE
-              value: "bookstack"
+              value: "bookstack-db"
             - name: MYSQL_USER
               value: "bookstack_user"
             - name: MYSQL_PASSWORD

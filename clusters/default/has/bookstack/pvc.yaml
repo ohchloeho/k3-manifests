@@ -13,7 +13,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: bookstack-db-pvc
+  name: mariadb-pvc
   namespace: home-assistant
 spec:
   accessModes:

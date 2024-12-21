@@ -24,7 +24,7 @@ spec:
         - name: APP_KEY
           value: "base64:qvU0FRPl0b2l+zJG91foLINkY79uF2XZVwUABUZOEbc="
         - name: DB_HOST
-          value: "bookstack-db"
+          value: "10.42.0.39"
         - name: DB_USERNAME
           value: "bookstack_user"
         - name: DB_PASS

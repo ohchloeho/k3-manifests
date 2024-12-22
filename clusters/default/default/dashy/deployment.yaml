@@ -20,16 +20,12 @@ spec:
           image: lissy93/dashy:latest
           ports:
             - containerPort: 80
-          command:
-            - /bin/sh
-            - -c
-            - >
-              sed -i 's/\"build\": \"NODE_OPTIONS=--openssl-legacy-provider vue-cli-service build\"/\"build\": \"NODE_OPTIONS=--openssl-legacy-provider vue-cli-service build --no-lint\"/' package.json &&
-              npm run build && npm run start
           env:
             - name: NODE_ENV
               value: "development"
             - name: SKIP_PREFLIGHT_CHECK
+              value: "true"
+            - name: VUE_CLI_SERVICE_DISABLE_LINT
               value: "true"
           volumeMounts:
             - mountPath: /app/config

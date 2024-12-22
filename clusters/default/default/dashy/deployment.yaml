@@ -30,8 +30,8 @@ spec:
           args:
             - "-c"
             - |
-              yarn build-and-start --no-lint && \
-              yarn build --no-lint && \
+              yarn build-and-start && \
+              yarn build && \
               node server  
           volumeMounts:
             - mountPath: /app/config

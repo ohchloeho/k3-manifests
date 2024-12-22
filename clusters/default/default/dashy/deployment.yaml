@@ -23,13 +23,15 @@ spec:
           env:
             - name: NODE_ENV
               value: "production"
+            - name: DISABLE_ESLINT_PLUGIN
+              value: "true"
           command:
             - "sh"
           args:
             - "-c"
             - |
-              yarn build-and-start --fix && \
-              yarn build --fix && \
+              yarn build-and-start --no-lint && \
+              yarn build --no-lint && \
               node server  
           volumeMounts:
             - mountPath: /app/config

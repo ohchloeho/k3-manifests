@@ -22,11 +22,18 @@ spec:
             - containerPort: 80
           env:
             - name: NODE_ENV
-              value: "development"
+              value: "production"
             - name: SKIP_PREFLIGHT_CHECK
               value: "true"
-            - name: VUE_CLI_SERVICE_DISABLE_LINT
-              value: "true"
+          command:
+            - "sh"
+          args:
+            - "-c"
+            - |
+              npm install && \
+              # Run build with ESLint fix flag
+              npm run build --fix && \
+              node server
           volumeMounts:
             - mountPath: /app/config
               name: dashy-config

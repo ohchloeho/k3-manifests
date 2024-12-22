@@ -22,7 +22,7 @@ spec:
             - containerPort: 80
           env:
             - name: NODE_ENV
-              value: "production"
+              value: "development"
             - name: SKIP_PREFLIGHT_CHECK
               value: "true"
           volumeMounts:

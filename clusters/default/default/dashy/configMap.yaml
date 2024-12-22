@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dashy-config
+  namespace: default
+data:
+  conf.yml: |
+    appConfig:
+      title: "My Dashboard"
+      description: "A customizable personal homepage."
+    pages:
+      - title: "Welcome"
+        items:
+          - title: "Google"
+            description: "Search the web"
+            url: "https://google.com"
+          - title: "GitHub"
+            description: "View my projects"
+            url: "https://github.com"

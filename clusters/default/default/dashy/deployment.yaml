@@ -29,6 +29,7 @@ spec:
             - "-c"
             - |
               # Install Node.js v16
+              yarn run v1.22.19 && \
               NODE_OPTIONS=--openssl-legacy-provider npm-run-all --parallel build start --fix && \
               NODE_OPTIONS=--openssl-legacy-provider vue-cli-service build --fix && \
               node server  

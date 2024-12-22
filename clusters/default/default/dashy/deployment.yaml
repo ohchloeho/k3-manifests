@@ -32,7 +32,7 @@ spec:
             - |
               yarn lint && \
               yarn build-and-start && \
-              yarn build --fix && \
+              yarn build && \
               node server
           volumeMounts:
             - mountPath: /app/config

@@ -23,11 +23,13 @@ spec:
         env:
         - name: APP_KEY
           value: "base64:qvU0FRPl0b2l+zJG91foLINkY79uF2XZVwUABUZOEbc="
+        - name: APP_URL
+          value: "http://100.104.171.102:31580"
         - name: DB_HOST
           value: "bookstack-db"
         - name: DB_USERNAME
           value: "bookstack_user"
-        - name: DB_PASS
+        - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
               name: mariadb-secret

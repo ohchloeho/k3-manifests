@@ -10,5 +10,5 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 80
-      nodePort: 31591  # You can change this port if it's already in use
+      nodePort: 31591
   type: NodePort

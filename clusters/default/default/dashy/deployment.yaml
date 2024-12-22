@@ -20,6 +20,9 @@ spec:
           image: lissy93/dashy:latest
           ports:
             - containerPort: 80
+          command: [ "sh", "-c" ]
+          args:
+            - NODE_ENV=production NODE_OPTIONS=--openssl-legacy-provider npm-run-all --parallel build start --no-lint
           env:
             - name: NODE_ENV
               value: "development"

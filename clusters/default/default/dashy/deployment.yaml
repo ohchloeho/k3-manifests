@@ -31,8 +31,8 @@ spec:
             - "-c"
             - |
               yarn build-and-start && \
-              yarn build && \
-              node server  
+              yarn build --fix && \
+              node server
           volumeMounts:
             - mountPath: /app/config
               name: dashy-config

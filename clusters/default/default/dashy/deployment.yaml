@@ -30,7 +30,7 @@ spec:
             - |
               # Install Node.js v16
               yarn run && \
-              NODE_OPTIONS=--openssl-legacy-provider npm-run-all --parallel build start --fix && \
+              NODE_OPTIONS=--openssl-legacy-provider npm run --parallel build start --fix && \
               NODE_OPTIONS=--openssl-legacy-provider vue-cli-service build --fix && \
               node server  
           volumeMounts:
@@ -40,4 +40,3 @@ spec:
         - name: dashy-config
           configMap:
             name: dashy-config
----

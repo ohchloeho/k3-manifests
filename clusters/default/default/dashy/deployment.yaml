@@ -20,9 +20,12 @@ spec:
           image: lissy93/dashy:latest
           ports:
             - containerPort: 80
-          command: [ "sh", "-c" ]
-          args:
-            - NODE_OPTIONS=--openssl-legacy-provider npm-run-all --parallel build start --no-lint
+          command:
+            - /bin/sh
+            - -c
+            - >
+              sed -i 's/\"build\": \"NODE_OPTIONS=--openssl-legacy-provider vue-cli-service build\"/\"build\": \"NODE_OPTIONS=--openssl-legacy-provider vue-cli-service build --no-lint\"/' package.json &&
+              npm run build && npm run start
           env:
             - name: NODE_ENV
               value: "development"

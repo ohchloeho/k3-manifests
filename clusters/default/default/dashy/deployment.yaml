@@ -23,8 +23,17 @@ spec:
           env:
             - name: NODE_ENV
               value: "production"
-            - name: SKIP_PREFLIGHT_CHECK
-              value: "true"
+          command:
+            - "sh"
+          args:
+            - "-c"
+            - |
+              # Install Node.js v16
+              curl -sL https://deb.nodesource.com/setup_16.x | bash - && \
+              apt-get install -y nodejs && \
+              npm install && \
+              npm run build --fix && \
+              node server  
           volumeMounts:
             - mountPath: /app/config
               name: dashy-config

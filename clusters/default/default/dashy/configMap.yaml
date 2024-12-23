@@ -25,23 +25,10 @@ data:
         icon: https://i.ibb.co/qWWpD0v/astro-dab-128.png
         url: https://live.dashy.to/
         target: newtab
-      - title: GitHub
-        description: Source Code, Issues and Pull Requests
-        url: https://github.com/lissy93/dashy
+      - title: hello-world
+        description: hello-world test page
+        url: http://100.104.171.102:31591/
         icon: favicon
-      - title: Docs
-        description: Configuring & Usage Documentation
-        provider: Dashy.to
-        icon: far fa-book
-        url: https://dashy.to/docs
-      - title: Showcase
-        description: See how others are using Dashy
-        url: https://github.com/Lissy93/dashy/blob/master/docs/showcase.md
-        icon: far fa-grin-hearts
-      - title: Config Guide
-        description: See full list of configuration options
-        url: https://github.com/Lissy93/dashy/blob/master/docs/configuring.md
-        icon: fas fa-wrench
       - title: Support
         description: Get help with Dashy, raise a bug, or get in contact
         url: https://github.com/Lissy93/dashy/blob/master/.github/SUPPORT.md

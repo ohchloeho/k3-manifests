@@ -11,14 +11,12 @@ data:
       navLinks:
       - title: GitHub
         path: https://github.com/Lissy93/dashy
-      - title: Documentation
-        path: https://dashy.to/docs
       appConfig:
         statusCheck: true
-      theme: colorful
+        theme: colorful
       sections:
-      - name: Getting Started
-        icon: fas fa-rocket
+      - name: status
+        icon: fas fa-traffic-light
         items:
         - title: Dashy Live
           description: Development a project management links for Dashy

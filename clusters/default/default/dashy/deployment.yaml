@@ -35,7 +35,7 @@ spec:
               yarn build && \
               node server
           volumeMounts:
-            - mountPath: /app/config/conf.yml
+            - mountPath: /app/user-data
               name: dashy-config
       volumes:
         - name: dashy-config

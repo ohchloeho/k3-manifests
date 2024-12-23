@@ -11,9 +11,11 @@ data:
       navLinks:
       - title: GitHub
         path: https://github.com/Lissy93/dashy
+
     appConfig:
-      statusCheck: true
       theme: colorful
+      statusCheck: true
+
     sections:
     - name: status
       icon: fas fa-traffic-light

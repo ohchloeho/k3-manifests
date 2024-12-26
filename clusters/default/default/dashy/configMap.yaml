@@ -17,7 +17,7 @@ data:
       statusCheck: true
 
     sections:
-    - name: status
+    - name: apps
       icon: fas fa-traffic-light
       items:
       - title: Dashy Live
@@ -29,7 +29,12 @@ data:
         description: hello-world test page
         url: http://100.104.171.102:31591/
         icon: favicon
+      - title: bookstack
+        description: bookstack app
+        url: http://100.104.171.102:31580/
+        icon: favicon
       - title: Support
         description: Get help with Dashy, raise a bug, or get in contact
         url: https://github.com/Lissy93/dashy/blob/master/.github/SUPPORT.md
         icon: far fa-hands-helping
+

@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: bookstack-db
-  namespace: home-assistant
+  namespace: applications
 spec:
   ports:
     - port: 3306

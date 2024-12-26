@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: bookstack-pvc
-  namespace: home-assistant
+  namespace: applications
 spec:
   accessModes:
   - ReadWriteOnce
@@ -14,7 +14,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: mariadb-pvc
-  namespace: home-assistant
+  namespace: applications
 spec:
   accessModes:
   - ReadWriteOnce

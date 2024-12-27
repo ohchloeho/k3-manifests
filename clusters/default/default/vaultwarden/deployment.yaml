@@ -24,13 +24,6 @@ spec:
           readOnly: true
         - mountPath: /data
           name: vaultwarden-data
-        env:
-        - name: ROCKET_TLS
-          value: '{"certs":"/ssl/tls.crt","key":"/ssl/tls.key"}'
-        - name: DOMAIN
-          value: "https://your-domain.com" # Replace with your domain
-        - name: ADMIN_TOKEN
-          value: "your-admin-token" # Set an admin token
       volumes:
       - name: vaultwarden-cert
         secret:

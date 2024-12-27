@@ -22,7 +22,7 @@ spec:
           - name: ROCKET_TLS
             value: '{certs="/ssl/tls.crt", key="/ssl/tls.key"}'
           - name: ROCKET_PORT
-            value: 443
+            value: '443'
         volumeMounts:
         - name: vaultwarden-cert
           mountPath: /ssl

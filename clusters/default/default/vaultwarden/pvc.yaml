@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: vaultwarden-pv
-  namespace: applications
+  namespace: default
 spec:
   capacity:
     storage: 5Gi

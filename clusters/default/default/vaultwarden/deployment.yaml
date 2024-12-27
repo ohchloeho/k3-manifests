@@ -26,7 +26,7 @@ spec:
           readOnly: true
         env:
         - name: ROCKET_TLS
-          value: "{certs='/ssl/vaultwarden.crt',key='/ssl/vaultwarden.key'}"
+          value: "{certs='/ssl/vaultwarden.crt',key='/ssl/tls.key'}"
         - name: DOMAIN
           value: "https://your-domain.com" # Replace with your domain
         - name: ADMIN_TOKEN

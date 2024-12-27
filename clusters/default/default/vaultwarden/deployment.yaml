@@ -21,7 +21,10 @@ spec:
         volumeMounts:
         - name: vaultwarden-cert
           mountPath: /ssl
-          readOnly: true
+          subPath: tls.crt
+        - name: vaultwarden-cert
+          mountPath: /ssl/tls.key
+          subPath: tls.key
         - mountPath: /data
           name: vaultwarden-data
         env:

@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   rules:
-  - host: "vaultwarden.example.com"
+  - host: "100.104.171.102:30443"
     http:
       paths:
       - path: /

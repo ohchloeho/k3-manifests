@@ -21,7 +21,7 @@ spec:
         volumeMounts:
         - mountPath: /data
           name: vaultwarden-data
-        - name: tls-certs
+        - name: vaultwarden-cert
           mountPath: /ssl
           readOnly: true
         env:
@@ -32,9 +32,9 @@ spec:
         - name: ADMIN_TOKEN
           value: "your-admin-token" # Set an admin token
       volumes:
-      - name: tls-certs
+      - name: vaultwarden-cert
         secret:
-          secretName: vaultwarden-tls
+          secretName: vaultwarden-cert
       - name: vaultwarden-data
         persistentVolumeClaim:
           claimName: vaultwarden-pvc

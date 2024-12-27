@@ -20,7 +20,7 @@ spec:
         - containerPort: 443
         env:
           - name: ROCKET_TLS
-            value: {certs="/ssl/tls.crt", key="/ssl/tls.key"}
+            value: '{certs="/ssl/tls.crt", key="/ssl/tls.key"}'
         volumeMounts:
         - name: vaultwarden-cert
           mountPath: /ssl

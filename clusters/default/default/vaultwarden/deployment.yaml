@@ -26,7 +26,7 @@ spec:
           name: vaultwarden-data
         env:
         - name: ROCKET_TLS
-          value: '{"certs":"/ssl/data/tls.crt","key":"/ssl/data/tls.key"}'
+          value: '{certs="/ssl/data/tls.crt",key="/ssl/data/tls.key"}'
       volumes:
       - name: vaultwarden-cert
         secret:

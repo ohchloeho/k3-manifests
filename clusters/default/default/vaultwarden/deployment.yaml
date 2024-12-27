@@ -19,14 +19,14 @@ spec:
         ports:
         - containerPort: 443
         volumeMounts:
-        - mountPath: /data
-          name: vaultwarden-data
         - name: vaultwarden-cert
           mountPath: /ssl
           readOnly: true
+        - mountPath: /data
+          name: vaultwarden-data
         env:
         - name: ROCKET_TLS
-          value: '{ "certs": "/ssl/tls.crt", "key": "/ssl/tls.key" }'
+          value: '{"certs":"/ssl/tls.crt","key":"/ssl/tls.key"}'
         - name: DOMAIN
           value: "https://your-domain.com" # Replace with your domain
         - name: ADMIN_TOKEN

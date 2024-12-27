@@ -27,7 +27,7 @@ data:
         target: newtab
       - title: hello-world
         description: hello-world test page
-        url: http://100.104.171.102:31591/
+        url: http://100.104.171.102:31590/
         icon: favicon
       - title: bookstack
         description: bookstack app

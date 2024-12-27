@@ -21,12 +21,9 @@ spec:
         volumeMounts:
         - name: vaultwarden-cert
           mountPath: /ssl
-          subPath: tls.crt
+          readOnly: true
         - mountPath: /data
           name: vaultwarden-data
-        env:
-        - name: ROCKET_TLS
-          value: '{"certs":"/ssl/tls.crt","key":"/ssl/tls.key"}'
       volumes:
       - name: vaultwarden-cert
         secret:

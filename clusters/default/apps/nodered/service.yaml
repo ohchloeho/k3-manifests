@@ -6,11 +6,12 @@ metadata:
   labels:
     app: nodered
 spec:
+  type: NodePort
   selector:
     app: nodered
   ports:
-    - protocol: TCP
+    - name: http
+      protocol: TCP
       port: 80
       targetPort: 80
       nodePort: 32002
-  type: NodePort

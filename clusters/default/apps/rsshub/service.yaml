@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: rsshub
-  namespace:
+  namespace: applications
 spec:
   selector:
     app: rsshub

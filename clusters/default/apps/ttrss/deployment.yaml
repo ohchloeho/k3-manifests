@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: ttrss
-        image: cthulhoo/ttrss-fpm-pgsql:latest
+        image: blacs30/tt-rss-docker:latest
         env:
         - name: DB_TYPE
           value: pgsql

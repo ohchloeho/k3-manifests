@@ -28,14 +28,15 @@ data:
       - title: hello-world
         description: hello-world test page
         url: http://100.104.171.102:31590/
-        icon: favicon
+        icon: fas fa-globe
       - title: bookstack
         description: bookstack app
         url: http://100.104.171.102:31580/
-        icon: favicon
+        icon: fas fa-book
       - title: vaultwarden
         description: vaultwarden app
         url: https://100.104.171.102:30443/
+        icon: fas fa-lock
     
     - name: tools
       icon: fas fa-tools
@@ -43,9 +44,9 @@ data:
       - title: ollama
         description: connect via terminal
         url: http://100.104.171.102:32001/
-        icon: favicon
+        icon: https://ollama.com/public/ollama.png
       - title: node red
         description: Node Red app
         url: http://100.104.171.102:32002/
-        icon: favicon
+        icon: fas fa-screwdriver-wrench
 

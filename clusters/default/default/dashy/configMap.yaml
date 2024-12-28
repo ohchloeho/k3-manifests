@@ -36,4 +36,16 @@ data:
       - title: vaultwarden
         description: vaultwarden app
         url: https://100.104.171.102:30443/
+    
+    - name: tools
+      icon: fas fa-tools
+      items:
+      - title: ollama
+        description: connect via terminal
+        url: http://100.104.171.102:32001/
+        icon: favicon
+      - title: node red
+        description: Node Red app
+        url: http://100.104.171.102:32002/
+        icon: favicon
 

@@ -6,11 +6,12 @@ metadata:
   labels:
     app: whisper
 spec:
+  type: NodePort
   selector:
     app: whisper
   ports:
-  - protocol: TCP
+  - name: http
+    protocol: TCP
     port: 80
     targetPort: 9000
     NodePort: 32003
-  type: NodePort

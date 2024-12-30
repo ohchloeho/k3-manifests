@@ -49,4 +49,9 @@ data:
         description: Node Red app
         url: http://100.104.171.102:32002/
         icon: fas fa-screwdriver-wrench
+      - title: whisper
+        description: Whisper app
+        url: http://100.104.171.102:32003/
+        icon: fas fa-microphone
+        
 

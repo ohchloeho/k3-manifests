@@ -28,6 +28,9 @@ spec:
           name: mosquitto-data
         - mountPath: /mosquitto/log
           name: mosquitto-logs
+        - mountPath: /mosquitto/config/passwd
+          subPath: passwd
+          name: mosquitto-config
       volumes:
       - name: mosquitto-config
         configMap:

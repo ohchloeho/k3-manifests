@@ -6,40 +6,34 @@ metadata:
   labels:
     app: mosquitto
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: mosquitto
-      tier: frontend
-    strategy:
-      type: Recreate
   template:
     metadata:
       labels:
         app: mosquitto
-        tier: frontend
     spec:
       containers:
       - name: mosquitto
-        image: eclipse-mosquitto:latest
+        image: eclipse-mosquitto:2.0
         ports:
         - containerPort: 1883
-          name: mosquitto
-          volumeMounts:
-            - name: mosquitto-persistent-storage
-              mountPath: /mosquitto/data
-            - name: mosquitto-config
-              mountPath: /mosquitto/config/mosquitto.conf
-              subPath: mosquitto.conf
-            - name: mosquitto-password
-              mountPath: /mosquitto/config/password.txt
-              subPath: password.txt
+        volumeMounts:
+        - mountPath: /mosquitto/config/mosquitto.conf
+          subPath: mosquitto.conf
+          name: mosquitto-config
+        - mountPath: /mosquitto/data
+          name: mosquitto-data
+        - mountPath: /mosquitto/log
+          name: mosquitto-logs
       volumes:
-        - name: mosquitto-persistent-storage
-          persistentVolumeClaim:
-          claimName: mq-pv-claim
-        - name: mosquitto-config
-          configMap:
-            name: mosquitto-config
-        - name: mosquitto-password
-          configMap:
-            name: mosquitto-password
+      - name: mosquitto-config
+        configMap:
+          name: mosquitto-config
+      - name: mosquitto-data
+        persistentVolumeClaim:
+          claimName: mosquitto-data-pvc
+      - name: mosquitto-logs
+        emptyDir: {}

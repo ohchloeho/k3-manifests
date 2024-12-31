@@ -7,6 +7,9 @@ data:
   mosquitto.conf: |
     listener 1883
     allow_anonymous true
+    password_file /mosquitto/config/passwd
     log_dest stdout
     persistence true
     persistence_location /mosquitto/data/
+  passwd: |
+    ohchloeho:$7$101$uvEU+sa2oZIjdu6N$UNx8FxTMazYPtFXSNnmxq8K+NdHv+SaJxAU3cDIJmmO+9yxnTLPtAlVr5cG7zIatXfwsGLptFnxKqFFDAnkeeg==

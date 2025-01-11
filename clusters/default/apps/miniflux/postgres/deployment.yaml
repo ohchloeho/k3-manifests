@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: miniflux-postgres
+  namespace: applications
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: miniflux-postgres
+  template:
+    metadata:
+      labels:
+        app: miniflux-postgres
+    spec:
+      containers:
+      - name: miniflux-postgres
+        image: linuxserver/postgres:latest
+        env:
+        - name: POSTGRES_DB
+          value: "miniflux"
+        - name: POSTGRES_USER
+          value: "miniflux_user"
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: user-password

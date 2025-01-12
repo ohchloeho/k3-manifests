@@ -4,25 +4,28 @@ metadata:
   name: miniflux-postgres
   namespace: applications
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: miniflux-postgres
+      app: postgres
   template:
     metadata:
       labels:
-        app: miniflux-postgres
+        app: postgres
     spec:
       containers:
-      - name: miniflux-postgres
-        image: linuxserver/postgres:latest
-        env:
-        - name: POSTGRES_DB
-          value: "miniflux"
-        - name: POSTGRES_USER
-          value: "miniflux_user"
-        - name: POSTGRES_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: postgres-secret
-              key: user-password
+        - name: postgres
+          image: 'postgres:14'
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: postgres-secret
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgresdata
+      volumes:
+        - name: postgresdata
+          persistentVolumeClaim:
+            claimName: postgres-volume-claim

@@ -33,6 +33,10 @@ data:
         description: bookstack app
         url: http://100.104.171.102:31580/
         icon: fas fa-book
+      - title: miniflux
+        description: rss reader
+        url: http://100.104.171.102:32004/
+        icon: https://miniflux.app/favicon.ico
       - title: vaultwarden
         description: vaultwarden app
         url: https://100.104.171.102:30443/

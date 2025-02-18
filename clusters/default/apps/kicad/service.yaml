@@ -10,11 +10,11 @@ spec:
     - name: http-port-3000   # Added name for the 3000 port
       port: 3000
       targetPort: 3000
-      nodePort: 32005
+      nodePort: 32006
       protocol: TCP
     - name: http-port-3001   # Added name for the 3001 port
       port: 3001
       targetPort: 3001
-      nodePort: 32006
+      nodePort: 32007
       protocol: TCP
   type: NodePort

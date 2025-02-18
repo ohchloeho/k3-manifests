@@ -36,6 +36,6 @@ spec:
             type: Unconfined  # Equivalent to 'security_opt: seccomp:unconfined'
       volumes:
       - name: kicad-config
-        hostPath:
-          path: /etc/rancher/k3s/k3s.yaml  
+        persistentVolumeClaim:
+          claimName: kicad-pvc 
   restartPolicy: Always  

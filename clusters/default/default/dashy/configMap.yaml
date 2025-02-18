@@ -17,6 +17,11 @@ data:
       statusCheck: true
 
     sections:
+    - type: clock
+      options:
+      timeZone: Europe/London
+      format: en-GB
+      hideDate: false
     - name: apps
       icon: fas fa-traffic-light
       items:

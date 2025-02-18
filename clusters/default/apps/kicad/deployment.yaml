@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: kicad
-        image: jmkhael/kicad:latest
+        image: kicad/kicad:latest
         ports:
         - containerPort: 80
         volumeMounts:

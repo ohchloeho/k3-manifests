@@ -11,9 +11,9 @@ spec:
     - protocol: TCP
       port: 3000
       targetPort: 3000
-      nodePort: 32005
+      nodePort: 32006
     - protocol: TCP
       port: 3001
       targetPort: 3001
-      nodePort: 32006
+      nodePort: 32007
   type: NodePort

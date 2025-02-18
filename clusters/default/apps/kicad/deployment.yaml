@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kicad
+  namespace: applications
+  labels:
+    app: kicad
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kicad
+  template:
+    metadata:
+      labels:
+        app: kicad
+    spec:
+      containers:
+      - name: kicad
+        image: jmkhael/kicad:latest
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: "/kicad/work"
+          name: kicad-data
+      volumes:
+      - name: kicad-data
+        emptyDir: {}

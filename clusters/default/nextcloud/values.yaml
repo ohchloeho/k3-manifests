@@ -1,0 +1,46 @@
+service:
+  type: LoadBalancer
+  loadBalancerIP: 100.104.171.102
+
+ingress:
+  enabled: true
+  hosts:
+    - host: nextcloud.local  # Optionally, you can use a local DNS or leave as is for direct IP access
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+
+nextcloud:
+  host: localhost
+  username: ohchloeho
+  password: pandemonium-nextcloud
+
+  extraEnv:
+    - name: APACHE_SERVER_NAME
+      value: "100.104.171.102"
+    - name: NEXTCLOUD_TRUSTED_DOMAINS                                                      
+      value: 100.104.171.102 
+
+  livenessProbe:
+    httpGet:
+      path: /status.php
+      port: 80
+    initialDelaySeconds: 60
+    timeoutSeconds: 5
+
+  readinessProbe:
+    httpGet:
+      path: /status.php
+      port: 80
+    initialDelaySeconds: 30
+    timeoutSeconds: 3
+
+  volumeMounts:
+    - name: nextcloud-config
+      mountPath: /var/www/html/config/config.php
+      subPath: config.php
+
+  volumes:
+    - name: nextcloud-config
+      configMap:
+        name: nextcloud-config

@@ -17,11 +17,6 @@ data:
       statusCheck: true
 
     sections:
-    - type: clock
-      options:
-      timeZone: Europe/London
-      format: en-GB
-      hideDate: false
     - name: apps
       icon: fas fa-traffic-light
       items:
@@ -66,5 +61,16 @@ data:
         description: Whisper app
         url: http://100.104.171.102:32003/
         icon: fas fa-microphone
-        
+      
+    - name: quick access
+      widgets:
+      - type: clock
+        options:
+          timeZone: Europe/London
+          format: en-GB
+          hideDate: false
+      - type: gl-network-interfaces
+        options:
+        hostname: http://192.168.130.2:61208
+
 

@@ -4,15 +4,3 @@ namespace: flux-system
 resources:
 - gotk-components.yaml
 - gotk-sync.yaml
-patches:
-- patch: |
-    - op: add
-      path: /spec/ignore
-      value: 
-        - "!nextcloud"
-  target:
-    kind: Kustomization
-    name: flux-system
-    namespace: flux-system
-exclude:
-- "clusters/default/nextcloud/values.yaml"

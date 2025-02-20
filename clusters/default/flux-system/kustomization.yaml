@@ -1,5 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: flux-system
 resources:
 - gotk-components.yaml
 - gotk-sync.yaml
@@ -12,3 +13,6 @@ patches:
   target:
     kind: Kustomization
     name: flux-system
+    namespace: flux-system
+exclude:
+- "clusters/default/nextcloud/values.yaml"

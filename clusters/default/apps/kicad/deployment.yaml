@@ -33,7 +33,7 @@ spec:
           mountPath: "/config" 
         securityContext:
           seccompProfile:
-            type: Unconfined  # Equivalent to 'security_opt: seccomp:unconfined'
+            type: Unconfined
       volumes:
       - name: kicad-config
         hostPath:

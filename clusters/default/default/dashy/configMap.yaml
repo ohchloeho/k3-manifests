@@ -72,8 +72,11 @@ data:
           timeZone: Europe/London
           format: en-GB
           hideDate: false
-      - type: gl-network-interfaces
+      - type: nextcloud-system
+        useProxy: true
         options:
-        hostname: http://192.168.130.2:61208
+          hostname: http://100.104.171.102:31207
+          username: ohchloeho
+          password: j2KnX-JdwPE-GTaPs-wsxJS-2GfDK
 
 

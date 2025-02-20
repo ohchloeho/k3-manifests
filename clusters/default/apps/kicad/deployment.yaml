@@ -30,7 +30,7 @@ spec:
           value: "Etc/UTC"
         volumeMounts:
         - name: kicad-config
-          mountPath: "/config" 
+          mountPath: "/config/k3s.yaml" 
         securityContext:
           seccompProfile:
             type: Unconfined

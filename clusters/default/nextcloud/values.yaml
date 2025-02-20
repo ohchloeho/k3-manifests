@@ -5,7 +5,7 @@ service:
 ingress:
   enabled: true
   hosts:
-    - host: nextcloud.local  # Optionally, you can use a local DNS or leave as is for direct IP access
+    - host: nextcloud.local
       paths:
         - path: /
           pathType: ImplementationSpecific

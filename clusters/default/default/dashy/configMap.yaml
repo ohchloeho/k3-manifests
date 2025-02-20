@@ -41,6 +41,9 @@ data:
         description: vaultwarden app
         url: https://100.104.171.102:30443/
         icon: fas fa-lock
+      - title: nextcloud
+        description: nextcloud app
+        url: https://100.104.171.102:30672/
     
     - name: tools
       icon: fas fa-tools

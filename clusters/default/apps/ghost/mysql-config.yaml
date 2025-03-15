@@ -13,8 +13,8 @@ metadata:
     
 type: Opaque
 stringData:
-  MYSQL_DATABASE: mysql-db-name # Same as in config.production.json
-  MYSQL_USER: mysql-db-user # Same as in config.production.json
-  MYSQL_PASSWORD: mysql-db-password # Same as in config.production.json
-  MYSQL_ROOT_PASSWORD: mysql-db-root-password # Same as in config.production.json
-  MYSQL_HOST: '%' # Same as in config.production.json
+  MYSQL_DATABASE: mysql-db-name 
+  MYSQL_USER: mysql-db-user 
+  MYSQL_PASSWORD: mysql-db-password 
+  MYSQL_ROOT_PASSWORD: mysql-db-root-password 
+  MYSQL_HOST: '%' 

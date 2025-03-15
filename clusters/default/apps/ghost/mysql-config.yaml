@@ -13,7 +13,7 @@ metadata:
     
 type: Opaque
 stringData:
-  MYSQL_DATABASE: mysql-db-name 
+  MYSQL_DATABASE: mysql-db-name # test
   MYSQL_USER: mysql-db-user 
   MYSQL_PASSWORD: mysql-db-password 
   MYSQL_ROOT_PASSWORD: mysql-db-root-password 

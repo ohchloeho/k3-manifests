@@ -41,17 +41,6 @@ stringData:
           "stdout"
         ]
       },
-      "database": {
-        "client": "mysql",
-        "connection": 
-        {
-          "host": "ghost-on-kubernetes-mysql-0",
-          "user": "mysql-db-user",
-          "password": "mysql-db-password",
-          "database": "mysql-db-name",
-          "port": "3306"
-        }
-      },
       "process": "local",
       "paths": {
         "contentPath": "/home/nonroot/app/ghost/content"

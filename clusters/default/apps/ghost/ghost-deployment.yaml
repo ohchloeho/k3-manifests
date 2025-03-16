@@ -129,7 +129,7 @@ spec:
             - name: database__client
               value: mysql
             - name: database__connection__host
-              value: ghost-on-kubernetes-mysql-0
+              value: db
             - name: database__connection__user
               valueFrom:
                 secretKeyRef:

@@ -155,9 +155,6 @@ spec:
           - echo "Database Host: $database__connection__host";
             echo "Database User: $database__connection__user";
             echo "Database Name: $database__connection__database";
-            sleep 5;
-            node current/index.js;
-
         resources:
           limits:
             cpu: 800m

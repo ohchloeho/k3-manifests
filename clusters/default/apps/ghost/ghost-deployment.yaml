@@ -146,15 +146,6 @@ spec:
                   name: ghost-on-kubernetes-mysql-env
                   key: MYSQL_DATABASE
 
-          command:
-            - /bin/sh
-            - -c
-            - |
-              echo "Database Host: $database__connection__host"
-              echo "Database User: $database__connection__user"
-              echo "Database Name: $database__connection__database"
-              node current/index.js
-
           volumeMounts:
             - name: k8s-ghost-content
               mountPath: /home/nonroot/app/ghost/content

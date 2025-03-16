@@ -45,7 +45,7 @@ stringData:
         "client": "mysql",
         "connection": 
         {
-          "host": "db",
+          "host": "ghost-on-kubernetes-mysql",
           "user": "mysql-db-user",
           "password": "mysql-db-password",
           "database": "mysql-db-name",

@@ -7,13 +7,11 @@ metadata:
     app: ghost-on-kubernetes
     app.kubernetes.io/name: ghost-on-kubernetes
     app.kubernetes.io/instance: ghost-on-kubernetes
-    app.kubernetes.io/version: '5.92'
+    app.kubernetes.io/version: "5.92"
     app.kubernetes.io/component: ghost
     app.kubernetes.io/part-of: ghost-on-kubernetes
-    
-    
+
 spec:
-  # If you want HA for your Ghost instance, you can increase the number of replicas AFTER creation and you need to adjust the storage class. See 02-pvc.yaml for more information.
   replicas: 1
   selector:
     matchLabels:
@@ -32,167 +30,153 @@ spec:
       labels:
         app: ghost-on-kubernetes
     spec:
-      automountServiceAccountToken: false # Disable automounting of service account token
+      automountServiceAccountToken: false
       volumes:
-      - name: k8s-ghost-content
-        persistentVolumeClaim:
-          claimName: k8s-ghost-content
-
-      - name: ghost-config-prod
-        secret:
-          secretName: ghost-config-prod
-          defaultMode: 420
-
-      - name: tmp
-        emptyDir:
-          sizeLimit: 64Mi
+        - name: k8s-ghost-content
+          persistentVolumeClaim:
+            claimName: k8s-ghost-content
+        - name: ghost-config-prod
+          secret:
+            secretName: ghost-config-prod
+            defaultMode: 420
+        - name: tmp
+          emptyDir:
+            sizeLimit: 64Mi
 
       initContainers:
-      - name: permissions-fix
-        imagePullPolicy: Always
-        image: docker.io/busybox:stable-musl
-        env:
-        - name: GHOST_INSTALL
-          value: /home/nonroot/app/ghost
-        - name: GHOST_CONTENT
-          value: /home/nonroot/app/ghost/content
-        - name: NODE_ENV
-          value: production
-        securityContext:
-          readOnlyRootFilesystem: true
-          allowPrivilegeEscalation: false
-        resources:
-          limits:
-            cpu: 900m
-            memory: 1000Mi
-          requests:
-            cpu: 100m
-            memory: 128Mi
-        command:
-          - /bin/sh
-          - '-c'
-          - |
-            set -e
-
-            export DIRS='files logs apps themes data public settings images media'
-            echo 'Check if base dirs exists, if not, create them'
-            echo "Directories to check: $DIRS"
-            for dir in $DIRS; do
-              if [ ! -d $GHOST_CONTENT/$dir ]; then
-                echo "Creating $GHOST_CONTENT/$dir directory"
-                mkdir -pv $GHOST_CONTENT/$dir || echo "Error creating $GHOST_CONTENT/$dir directory"
-              fi
-              chown -Rfv 65532:65532 $GHOST_CONTENT/$dir && echo "chown ok on $dir" || echo "Error changing ownership of $GHOST_CONTENT/$dir directory"
-            done
-            exit 0
-
-
-        volumeMounts:
-        - name: k8s-ghost-content
-          mountPath: /home/nonroot/app/ghost/content
-          readOnly: false
+        - name: permissions-fix
+          image: docker.io/busybox:stable-musl
+          imagePullPolicy: Always
+          env:
+            - name: GHOST_INSTALL
+              value: /home/nonroot/app/ghost
+            - name: GHOST_CONTENT
+              value: /home/nonroot/app/ghost/content
+            - name: NODE_ENV
+              value: production
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+          resources:
+            limits:
+              cpu: 900m
+              memory: 1000Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          command:
+            - /bin/sh
+            - -c
+            - |
+              set -e
+              export DIRS='files logs apps themes data public settings images media'
+              echo 'Checking and creating directories if needed'
+              for dir in $DIRS; do
+                if [ ! -d $GHOST_CONTENT/$dir ]; then
+                  echo "Creating directory: $GHOST_CONTENT/$dir"
+                  mkdir -pv $GHOST_CONTENT/$dir
+                fi
+                chown -Rfv 65532:65532 $GHOST_CONTENT/$dir
+              done
+              exit 0
+          volumeMounts:
+            - name: k8s-ghost-content
+              mountPath: /home/nonroot/app/ghost/content
+              readOnly: false
 
       containers:
-      - name: ghost-on-kubernetes
-        image: ghcr.io/sredevopsorg/ghost-on-kubernetes:main
-        imagePullPolicy: Always
-        ports:
-        - name: ghk8s
-          containerPort: 2368
-          protocol: TCP
+        - name: ghost-on-kubernetes
+          image: ghcr.io/sredevopsorg/ghost-on-kubernetes:main
+          imagePullPolicy: Always
+          ports:
+            - name: ghk8s
+              containerPort: 2368
+              protocol: TCP
 
-        # You should uncomment the following lines in production. Change the values according to your environment.
-        readinessProbe:
-          httpGet:
-            path: /ghost/api/v4/admin/site/
-            port: ghk8s
-            httpHeaders:
-            - name: X-Forwarded-Proto
-              value: https
-            - name: Host
-              value: yourdomain.tld
-          periodSeconds: 10
-          timeoutSeconds: 3
-          successThreshold: 1
-          failureThreshold: 3
-          initialDelaySeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /ghost/api/v4/admin/site/
+              port: ghk8s
+              httpHeaders:
+                - name: X-Forwarded-Proto
+                  value: https
+                - name: Host
+                  value: yourdomain.tld
+            periodSeconds: 10
+            timeoutSeconds: 3
+            successThreshold: 1
+            failureThreshold: 3
+            initialDelaySeconds: 10
 
-        livenessProbe:
-          httpGet:
-            path: /ghost/api/v4/admin/site/
-            port: ghk8s
-            httpHeaders:
-            - name: X-Forwarded-Proto
-              value: https
-            - name: Host
-              value: yourdomain.tld
-          periodSeconds: 300
-          timeoutSeconds: 3
-          successThreshold: 1
-          failureThreshold: 1
-          initialDelaySeconds: 30
+          livenessProbe:
+            httpGet:
+              path: /ghost/api/v4/admin/site/
+              port: ghk8s
+              httpHeaders:
+                - name: X-Forwarded-Proto
+                  value: https
+                - name: Host
+                  value: yourdomain.tld
+            periodSeconds: 300
+            timeoutSeconds: 3
+            successThreshold: 1
+            failureThreshold: 1
+            initialDelaySeconds: 30
 
-        env:
-          - name: NODE_ENV
-            value: production
-          - name: database__client
-            value: mysql
-          - name: database__connection__host
-            valueFrom:
-              secretKeyRef:
-                name: ghost-on-kubernetes-mysql-env
-                key: MYSQL_HOST
-          - name: database__connection__user
-            valueFrom:
-              secretKeyRef:
-                name: ghost-on-kubernetes-mysql-env
-                key: MYSQL_USER
-          - name: database__connection__password
-            valueFrom:
-              secretKeyRef:
-                name: ghost-on-kubernetes-mysql-env
-                key: MYSQL_PASSWORD
-          - name: database__connection__database
-            valueFrom:
-              secretKeyRef:
-                name: ghost-on-kubernetes-mysql-env
-                key: MYSQL_DATABASE
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: database__client
+              value: mysql
+            - name: database__connection__host
+              valueFrom:
+                secretKeyRef:
+                  name: ghost-on-kubernetes-mysql-env
+                  key: MYSQL_HOST
+            - name: database__connection__user
+              valueFrom:
+                secretKeyRef:
+                  name: ghost-on-kubernetes-mysql-env
+                  key: MYSQL_USER
+            - name: database__connection__password
+              valueFrom:
+                secretKeyRef:
+                  name: ghost-on-kubernetes-mysql-env
+                  key: MYSQL_PASSWORD
+            - name: database__connection__database
+              valueFrom:
+                secretKeyRef:
+                  name: ghost-on-kubernetes-mysql-env
+                  key: MYSQL_DATABASE
 
-        command: ["/bin/sh", "-c"]
-          args:
-            - echo "Database Host: $database__connection__host";
-              echo "Database User: $database__connection__user";
-              echo "Database Name: $database__connection__database";
-              
-        volumeMounts:
-        - name: k8s-ghost-content
-          mountPath: /home/nonroot/app/ghost/content
-          readOnly: false
-        - name: ghost-config-prod
-          readOnly: true
-          mountPath: /home/nonroot/app/ghost/config.production.json
-          subPath: config.production.json
-        - name: tmp # This is the temporary volume mount to allow loading themes
-          mountPath: /tmp
-          readOnly: false
-        securityContext:
-          readOnlyRootFilesystem: true
-          allowPrivilegeEscalation: false
-          runAsNonRoot: true
-          runAsUser: 65532
+          command:
+            - /bin/sh
+            - -c
+            - |
+              echo "Database Host: $database__connection__host"
+              echo "Database User: $database__connection__user"
+              echo "Database Name: $database__connection__database"
+              node current/index.js
 
+          volumeMounts:
+            - name: k8s-ghost-content
+              mountPath: /home/nonroot/app/ghost/content
+              readOnly: false
+            - name: ghost-config-prod
+              readOnly: true
+              mountPath: /home/nonroot/app/ghost/config.production.json
+              subPath: config.production.json
+            - name: tmp
+              mountPath: /tmp
+              readOnly: false
+
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            runAsUser: 65532
 
       restartPolicy: Always
       terminationGracePeriodSeconds: 15
       dnsPolicy: ClusterFirst
-      # # Optional: Uncomment the following to specify node selectors
-      # affinity:
-      #   nodeAffinity:
-      #     requiredDuringSchedulingIgnoredDuringExecution:
-      #       nodeSelectorTerms:
-      #         - matchExpressions:
-      #             - key: node-role.kubernetes.io/worker
-      #               operator: In
-      #               values:
-      #                 - 'true'
       securityContext: {}

@@ -17,4 +17,4 @@ stringData:
   MYSQL_USER: mysql-db-user
   MYSQL_PASSWORD: mysql-db-password
   MYSQL_ROOT_PASSWORD: mysql-db-root-password
-  MYSQL_HOST: ghost-on-kubernetes-mysql
+  MYSQL_HOST: ghost-on-kubernetes-mysql-service

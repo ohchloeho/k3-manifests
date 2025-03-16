@@ -126,25 +126,6 @@ spec:
           env:
             - name: NODE_ENV
               value: production
-            - name: database__client
-              value: mysql
-            - name: database__connection__host
-              value: db
-            - name: database__connection__user
-              valueFrom:
-                secretKeyRef:
-                  name: ghost-on-kubernetes-mysql-env
-                  key: MYSQL_USER
-            - name: database__connection__password
-              valueFrom:
-                secretKeyRef:
-                  name: ghost-on-kubernetes-mysql-env
-                  key: MYSQL_PASSWORD
-            - name: database__connection__database
-              valueFrom:
-                secretKeyRef:
-                  name: ghost-on-kubernetes-mysql-env
-                  key: MYSQL_DATABASE
 
           volumeMounts:
             - name: k8s-ghost-content
